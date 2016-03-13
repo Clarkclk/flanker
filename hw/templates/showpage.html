@@ -1,0 +1,65 @@
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'hw/outline.css' %}" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>taskpage</title>
+</head>
+<script type="text/javascript">
+function start()
+{	
+	var optionvalue = document.getElementById("tasklist").value;
+	if(optionvalue == "")
+	{
+		alert("请选中一个表格");
+	}
+	else
+	{
+		document.getElementById("buttonvalue").value = "start";
+		document.forms["taskform"].submit();
+	}
+}
+
+</script>
+<body>
+		<div style = "border:1px solid black; width:950px;height:575px;display:block;">
+			<div>
+				<p>
+					<span class = websitetext>表格列表： </span>
+				</p>
+			</div>
+			<form action = "{{skipsite}}" method = "post" name = "taskform">
+				<div style = "height:440px">
+					<select id = "tasklist" name = "tasklist" multiple="multiple" style = "width:930px;height:430px">
+						{%for task in tasklist%}
+							<option value = "{{task}}">{{task}}</option>
+						{%endfor%}
+					</select>
+				</div>
+				<input type = "text" id = "buttonvalue" name = "buttonvalue" style = "display:none">
+				<div>
+					<p>
+						<span style = "display:block;text-align:left"><input type = "button" class = "button orange" value = "确定" onclick = "start()">
+					</p>
+				</div>
+			</form>
+		</div>
+		<div style = "border:1px solid black;display:block;float:left;height:820px">
+			<div style = "display:block;">
+			<p>
+					<span class = websitetext>内容结果：</span>
+					</br>
+					<p></p>
+					<textarea rows = "20" cols = "85" name = "cons" id = "cons" readonly = "readonly" style = "font:14px/100% Arial, Helvetica, sans-serif">{{cons}}</textarea>
+			</p>
+			</div>
+		</div>
+		<div style = "display:block;position:absolute;bottom:0px;border:1px solid black;">
+			<div class = websitetext>
+				<span>网页导航： </span><a href = "/loginpage">| 重新登录 |</a><span> </span><a href = "/workpage"> 工作界面 |</a><span> </span><a href = "/taskpage"> 任务界面 |</a>
+			<div>
+		</div>
+		
+</body>
+</html>

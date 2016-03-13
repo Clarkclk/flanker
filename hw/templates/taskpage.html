@@ -1,0 +1,177 @@
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'hw/outline.css' %}" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>taskpage</title>
+</head>
+<script type="text/javascript">
+function skipadd()
+{
+	window.location.href = "addpage";
+}
+function skipmodify()
+{	
+	var optionvalue = document.getElementById("tasklist").value;
+	if(optionvalue == "")
+	{
+		alert("请选中一个任务");
+	}
+	else
+	{
+		document.getElementById("buttonvalue").value = "modify";
+		document.forms["taskform"].submit();
+	}
+}
+function deletef()
+{
+	var optionvalue = document.getElementById("tasklist").value;
+	if(optionvalue == "")
+	{
+		alert("请选中一个任务");
+	}
+	else
+	{
+		document.getElementById("buttonvalue").value = "delete";
+		document.forms["taskform"].submit();
+	}
+}
+function checkinfo()
+{
+	var optionvalue = document.getElementById("tasklist").value;
+	if(optionvalue == "")
+	{
+		alert("请选中一个任务");
+	}
+	else
+	{
+		document.getElementById("buttonvalue").value = "info";
+		document.forms["taskform"].submit();
+	}
+}
+function execute()
+{	
+	var optionvalue = document.getElementById("tasklist").value;
+	if(optionvalue == "")
+	{
+		alert("请选中一个任务");
+	}
+	else
+	{
+		document.getElementById("buttonvalue").value = "execute";
+		document.forms["taskform"].submit();
+	}
+}
+
+function start()
+{	
+	var optionvalue = document.getElementById("tasklist").value;
+	if(optionvalue == "")
+	{
+		alert("请选中一个任务");
+	}
+	else
+	{
+		document.getElementById("buttonvalue").value = "start";
+		document.forms["taskform"].submit();
+	}
+}
+
+function terminate()
+{
+	var optionvalue = document.getElementById("tasklist").value;
+	if(optionvalue == "")
+	{
+		alert("请选中一个任务");
+	}
+	else
+	{
+		document.getElementById("buttonvalue").value = "terminate";
+		document.forms["taskform"].submit();
+	}
+}
+function graph()
+{
+	window.location.href = "chart2"
+}
+
+function showdatabase()
+{
+	window.location.href = "/showpage"
+}
+
+function addpre()
+{
+	var optionvalue = document.getElementById("tasklist").value;
+	if(optionvalue == "")
+	{
+		alert("请选中一个任务");
+	}
+	else
+	{
+		document.getElementById("buttonvalue").value = "presub";
+		document.forms["taskform"].submit();
+	}
+}
+function lastpage()
+{
+	document.getElementById("buttonvalue").value = "lastpage";
+	document.forms["taskform"].submit();
+}
+function nextpage()
+{
+	document.getElementById("buttonvalue").value = "nextpage";
+	document.forms["taskform"].submit();
+}
+function taskgraph()
+{
+	window.location.href = "/dag";
+}
+</script>
+<body>
+		<div style = "border:1px solid black; width:950px;height:575px;display:block;">
+			<div>
+				<p>
+					<span class = websitetext>任务列表： </span>
+				</p>
+			</div>
+			<form action = "{{skipsite}}" method = "post" name = "taskform">
+				<div style = "height:440px">
+					<select id = "tasklist" name = "tasklist" multiple="multiple" style = "width:930px;height:430px">
+						{%for task in tasklist%}
+							<option value = "{{task.taskname}}">{{task.taskname}} {{task.status}}</option>
+						{%endfor%}
+					</select>
+				</div>
+				<input type = "text" id = "buttonvalue" name = "buttonvalue" style = "display:none">
+				<div>
+				<div>
+					<span class = "websitetext">当前页码：{{currentpage}}  页码总数：{{pagecount}}</span>
+					<input type = "button"  value = "上一页" onclick = "lastpage()">
+					<input type = "button"  value = "下一页" onclick = "nextpage()">
+				</div>
+					<p>
+						<span style = "display:block;text-align:left"><input type = "button" class = "button orange" value = "添加" onclick = "skipadd()"> <input type = "button" class = "button orange" value = "修改" onClick="skipmodify()"> <input type = "button" class = "button orange" value = "删除" onClick="deletef()"> <input type = "button" class = "button orange" value = "信息" onClick="checkinfo()"> <input type = "button" class = "button orange" value = "启动" onclick = "start()"> <input type = "button" class = "button orange" value = "执行" onclick = "execute()"> <input type = "button" class = "button orange" value = "中断" onclick= "terminate()"> <input type = "button" class = "button orange" value = "添加前驱和后驱" onclick= "addpre()"> <input type = "button" class = "button orange" value = "显示任务关系图" onclick= "taskgraph()"><input type = "button" class = "button orange" value = "查看数据库" onclick= "showdatabase()"></span>
+					</p>
+				</div>
+			</form>
+		</div>
+		<div style = "display:block;position:absolute;bottom:0px;border:1px solid black;">
+			<div class = websitetext>
+				<span>网页导航： </span><a href = "/loginpage">| 重新登录 |</a><span> </span><a href = "/workpage"> 工作界面 |</a><span> </span><a href = "/taskpage"> 任务界面 |</a>
+			<div>
+		</div>
+		<input type = "text" id = "skipid" value = "{{skipsite}}" style = "display:none">
+		<script>
+			var site = document.getElementById("skipid").value;
+			if(site == "")
+			{
+			}
+			else
+			{
+				window.location.href = site;
+			}
+		</script>		
+</body>
+</html>

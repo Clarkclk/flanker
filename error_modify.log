@@ -1,0 +1,2 @@
+-----duse python;
+select * from takslist;

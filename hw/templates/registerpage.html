@@ -1,0 +1,73 @@
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'hw/outline.css' %}" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>registerpage</title>
+<link href = "outline.css" rel = "stylesheet" style = "text/css"/>
+</head>
+<script style = "text/javascript">
+function regist()
+{
+	var user = document.registform.username.value;
+	var pass = document.registform.password.value;
+	var conf = document.registform.confirmword.value;
+	if(user == "")
+	{
+		alert('请输入用户名');
+	}
+	else if(pass == "")
+	{
+		alert('请输入密码');
+	}
+	else if (conf == "")
+	{
+		alert('请确认密码');
+	}
+	else if(conf != pass)
+	{
+		alert('两次输入的密码不相同');
+	}
+	else
+	{
+		document.forms["registform"].submit();
+	}
+}
+</script>
+<body>
+	<div id = "regist" style = "border:1px solid black;">
+		<form action = "" method = "post" name = "registform">
+			<div>
+				<p>
+					<span class = websitetext style = "display:block; float:left;width :80px ;text-align:right">用户名：</span>
+					<span><input type = "text" name = "username"></span> 
+				</p>
+				<p>
+					<span class = websitetext style = "display:block; float:left;width :80px ; text-align:right">密码：</span>
+					<span><input type = "password" name = "password"></span> 
+				</p>
+				<p>
+					<span class = websitetext style = "display:block; float:left;width :80px ; text-align:right">密码确认：</span>
+					<span><input type = "password" name = "confirmword"></span> 
+				</p>
+				<p>
+					<span style = "display:block; width:280px;float:left;text-align:middle"><input type = "button" class = "button orange" value = "提交" onclick = "regist()"> <input type = "reset" class = "button orange" value = "重置"></span>
+				</p>
+			</div>
+		</form>
+	</div>
+	<input type = "text" value = "{{checkvalue}}" id = "check" style = "display:none">
+	<script>
+		var checkvalue = document.getElementById("check").value;
+		if(checkvalue == "yes")
+		{
+			window.location.href = "/loginpage/";
+		}
+		if(checkvalue == "no")
+		{
+			alert("已经被注册的ID");
+		}
+	</script>
+</body>
+</html>

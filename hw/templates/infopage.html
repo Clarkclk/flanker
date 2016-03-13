@@ -1,0 +1,61 @@
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'hw/outline.css' %}" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>infopage</title>
+<script>
+function skipwork()
+{
+	window.location.href = "/taskpage";
+}
+</script>
+</head>
+<body>
+	<div style = "display:block;border:1px solid black;width:468px;height:auto">
+		<div>
+			<span class = websitetext>任务名称: {{taskname}}</span>
+			</br>
+		</div>
+		<div>
+			<span class = websitetext>任务描述: {{taskdescription}}</span>
+			</br>
+		</div>
+		<div>
+			<span class = websitetext>任务类型: {{taskkind}}</span>
+			</br>
+		</div>
+		<div>
+			<span class = websitetext>任务状态: {{taskstatus}}</span>
+			</br>
+		</div>
+		<div>
+			<span class = websitetext>sql代码: </span>
+			</br>
+			</br>
+				<textarea rows = "20" cols = "60" style = "font:14px/100% Arial, Helvetica, sans-serif">{{taskcode}}
+				</textarea>
+		</div>
+		<div>
+			<span class = websitetext>前驱任务: </span>
+			</br>
+			</br>
+			<select id = "tasklist">
+					{%for pretask in pretasklist%}
+						<option value = "{{pretask}}">{{pretask}}</option>
+					{%endfor%}>
+			</select>
+		</div>
+		<div>
+			<input class = "orange button" type = "submit" value = "执行前驱任务" onclick = "exepre()">
+			<input class = "orange button" type = "button" value = "回到工作页面" onclick = "skipwork()">
+		</div>
+	</div>
+			<div style = "display:block;position:absolute;bottom:0px;border:1px solid black;">
+			<div class = websitetext>
+				<span>网页导航： </span><a href = "/loginpage">| 重新登录 |</a><span> </span><a href = "/workpage"> 工作界面 |</a><span> </span><a href = "/taskpage"> 任务界面 |</a>
+			<div>
+		</div>
+</body>
+</html>

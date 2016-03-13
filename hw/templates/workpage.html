@@ -1,0 +1,118 @@
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'hw/outline.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'hw/prism.css' %}" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>workpage</title>
+</head>
+<script type = "text/javascript">
+function showconfig()
+{
+	window.location.href = "/configpage";
+}
+function skiptask()
+{
+	window.location.href = "/taskpage";
+}
+function loadsql()
+{
+	window.location.href = "/loadpage/";
+}
+function storesql()
+{
+	document.workform.hide.value = document.getElementById("code").value;
+	document.workform.buttonvalue.value = "store";
+	document.forms["workform"].submit();
+}
+function exesql()
+{
+	document.workform.hide.value = document.getElementById("code").value;
+	document.getElementById("buttonvalue").value = "execute";
+	document.forms["workform"].submit();
+}
+function fresh()
+{
+	<!--document.getElementById("code").value = document.getElementById("inputcode").value;-->
+	document.getElementById("display").innerHTML = "<pre><code class = 'language-sql' id = 'hightext'>" + document.getElementById("code").value + "</code></pre>";
+	var block = document.getElementById('hightext');
+	Prism.highlightElement(block);
+}
+function send()
+{
+}
+</script>
+<body>
+	<!--<script src = "prism.js"></script>-->
+	<div style = "border:1px solid black; width:644px;float:left;height: 820px">
+		<div style = "border:1px solid black; width:300px;display:block;float:left">
+			<div>
+				<p>
+					<span class = websitetext>数据库名：{{sqlname}} </span>
+				</p>
+			</div>
+		</div>
+		
+		<div style = "border:1px solid black; width:300px;display:block;float:left">
+			<div>
+				<p>
+					<span class = websitetext>表名：{{tablename}}</span>
+				</p>
+			</div>
+		</div>
+		
+		<div style = "display:block;">
+			<p>
+				<span class = websitetext>你的代码在这里显示：</span>
+				</br>
+			</p>
+		</div>
+		<form action = "/workpage/" method = "post" name = "workform">
+			<div style = "display:block;height:650px;overflow:auto" id = "display">
+				<pre><code class = 'language-sql' id = 'hightext'></code></pre>
+			</div>
+			<input type = "text" name = "buttonvalue" id = "buttonvalue" value = "init" style = "display:none">
+			<textarea name = "hide" id = "hide" style = "display:none"></textarea>
+			<div>
+				<p>
+					<span style = "display:block;text-align:left"><input type = "button" class = "button orange" value = "载入" onClick="loadsql()"> <input type = "button" class = "button orange" value = "执行" onClick="exesql()"> <input type = "button" class = "button orange" value = "存储" onClick="storesql()">  <input type = "button" class = "button orange" value = "配置" onclick = "showconfig()"> <input type = "button" class = "button orange" value = "任务列表" onclick = "skiptask()"></span>
+				</p>
+			</div>
+		</form>
+	</div>
+	<div>
+		<div style = "border:1px solid black;display:block;float:left;height:820px">
+			<div style = "display:block;">
+			<p>	
+					<span class = websitetext>在这里输入sql代码：</span>
+					</br>
+					<p></p>
+					<textarea rows = "30" cols = "85" name = "code" id = "code" style = "font:14px/100% Arial, Helvetica, sans-serif" onkeyUp = "fresh()">{{code}}</textarea>
+			</p>
+			<p>
+					<span class = websitetext>sql执行结果：</span>
+					</br>
+					<p></p>
+					<textarea rows = "20" cols = "85" name = "cons" id = "cons" readonly = "readonly" style = "font:14px/100% Arial, Helvetica, sans-serif">{{cons}}</textarea>
+			</p>
+			</div>
+		</div>
+	</div>
+		<div style = "display:block;position:absolute;bottom:0px;border:1px solid black;">
+			<div class = websitetext>
+				<span>网页导航： </span><a href = "/loginpage">| 重新登录 |</a><span> </span><a href = "/workpage"> 工作界面 |</a><span> </span><a href = "/taskpage"> 任务界面 |</a>
+			<div>
+		</div>
+	<input type = "text" id = "workvalue" value = "{{workvalue}}" style = "display:none">
+		<script>
+			var workstatus = document.getElementById("workvalue").value;
+			if(workstatus == "yes")
+			{
+				window.location.href = "/storepage/";
+			}			
+		</script>
+	<script src = "{% static 'hw/prism.js' %}"></script>
+	</script>
+</body>
+</html>

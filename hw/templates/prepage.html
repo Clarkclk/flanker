@@ -1,0 +1,42 @@
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'hw/outline.css' %}" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>prepage</title>
+<link href = "outline.css" rel = "stylesheet" style = "text/css"/>
+</head>
+<body>
+	<div id = "loginpopup" style = "border:1px solid black;display:block">
+		<form action = "" method = "post" name = "addpreform">
+			<div>
+				<p>
+					<span class = websitetext style = "display:block; float:left;width :80px ;text-align:right">添加前驱任务：</span>
+					<span><input type = "text" name = "pretask"></span> 
+				</p>
+				<p>
+					<span class = websitetext style = "display:block; float:left;width :80px ; text-align:right">添加后驱任务：</span>
+					<span><input type = "text" name = "subtask"></span> 
+				</p>
+				<p>
+					<span style = "display:block; width:280px;float:left;text-align:middle"><input type = "submit" class = "button orange" value = "确定"> </span>
+				</p>
+			</div>
+		</form>
+	</div>
+		<div style = "display:block;position:absolute;bottom:0px;border:1px solid black;">
+			<div class = websitetext>
+				<span>网页导航： </span><a href = "/loginpage">| 重新登录 |</a><span> </span><a href = "/workpage"> 工作界面 |</a><span> </span><a href = "/taskpage"> 任务界面 |</a>
+			<div>
+		</div>
+	<input type = "text" id = "loadvalue" value = "{{loadvalue}}" style = "display:none">
+	<script>
+		var loadstatus = document.getElementById("loadvalue").value;
+		if(loadstatus == "yes")
+		{
+			window.location.href = "/taskpage";
+		}			
+	</script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'hw/outline.css' %}" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>modifypage</title>
+<link href = "outline.css" rel = "stylesheet" style = "text/css"/>
+<script type = "text/javascript">
+function loadok()
+{
+	var taname = document.getElementById("taskname").value;
+	if(taname == "")
+	{
+		alert('please input taskname');
+	}
+}
+function skipwork()
+{	
+	window.location.href = "/taskpage";
+}
+</script>
+</head>
+<body>
+	<div id = "storepage" style = "border:1px solid black;">
+		<form action = "" method = "post" name = "modifyform">
+			<div>
+				<p>
+					<span class = websitetext>请输入新任务的名称:</span> 
+				</p>
+				<p>
+					<span class = websitetext style = "display:block; float:left;width :80px ;">任务名:</span>
+					<input type = "text" id = "taskname" name = "taskname" value = "{{taskname}}"> 
+				</p>
+			</div>
+		  <div>
+				<p>
+					<span class = websitetext>任务类型:</span>
+					<select id = "taskkind" name = "taskkind">
+						<option value = "timed">定时任务</option>
+						<option value = "ordinary">普通任务</option>
+					</select> 
+				</p>
+				<p>
+					<span class = websitetext>如果为定时任务选择任务执行周期和首次执行时间:</span>
+					</br>
+					<span class = websitetext>执行周期:</span>
+					<select id = "taskperiod" name = "taskperiod">
+						<option value = "year">一年一次</option>
+						<option value = "month">一月一次</option>
+						<option value = "week">一周一次</option>
+						<option value = "day">一天一次</option>
+					</select> 
+				</p>
+				<p>
+					<span class = websitetext>首次执行时间:</span>
+					</br>
+					<span class = websitetext>月:</span><input type = "text" name = "month" id = "month">
+					<span class = websitetext>日:</span><input type = "text" name = "day" id = "day">
+					<span class = websitetext>小时:</span><input type = "text" name = "hour" id = "hour">
+					<span class = websitetext>分钟:</span><input type = "text" name = "minute" id = "minute">
+				</p>
+			</div>
+			<div>
+				<p>
+					<span class = websitetext>请输入任务描述:</span> 
+				</p>
+				<textarea rows = "5" cols = "40" id = "taskdescription" name = "taskdescription" style = "font:14px/100% Arial, Helvetica, sans-serif">{{taskdescription}}
+				</textarea>
+			</div>
+			<div>
+				<p>
+					<span class = websitetext>请输入sql代码:</span> 
+				</p>
+				<textarea rows = "20" cols = "40" id = "taskcode" name = "taskcode" style = "font:14px/100% Arial, Helvetica, sans-serif">{{sqlcode}}		
+				</textarea>
+			</div>
+			<div>
+				<p>
+					<span style = "display:block;text-align:left">
+					<input type = "submit" class = "button orange" value = "确定"> <input type = "button" class = "button orange" value = "取消" onclick = "skipwork()"></span>
+				</p>
+			</div>
+		</form>
+		</div>
+				<div style = "display:block;position:absolute;bottom:0px;border:1px solid black;">
+			<div class = websitetext>
+				<span>网页导航： </span><a href = "/loginpage">| 重新登录 |</a><span> </span><a href = "/workpage"> 工作界面 |</a><span> </span><a href = "/taskpage"> 任务界面 |</a>
+			<div>
+		</div>
+		<input type = "text" value = "{{modifystatus}}" id = "modifyvalue" style = "display:none">
+		<script>
+			var modifystatus = document.getElementById("modifyvalue").value;
+			if(modifystatus == "yes")
+			{
+				window.location.href = "/taskpage";
+			}			
+		</script>
+</body>
+</html>

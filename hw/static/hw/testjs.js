@@ -1,0 +1,4 @@
+function yui()
+{
+	alert('a');
+}

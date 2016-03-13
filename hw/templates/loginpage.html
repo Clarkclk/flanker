@@ -1,0 +1,59 @@
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'hw/outline.css' %}" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>loginpage</title>
+</head>
+<script type = "text/javascript">
+function login()
+{
+	var user = document.loginform.username.value;
+	var pass = document.loginform.password.value;
+	if(user == "")
+	{
+		alert('请输入用户名');
+	}
+	else if(pass == "")
+	{	
+		alert('请输入密码');
+	}
+	else
+	{	
+		document.forms["loginform"].submit();
+	}
+}
+function registskip()
+{	
+	window.location.href = "/registerpage/";
+}
+</script>
+<body>
+	<div id = "loginpopup" style = "border:1px solid black;display:block">
+		<form action = "/loginpage/" method = "post" name = "loginform">
+			<div>
+				<p>
+					<span class = websitetext style = "display:block; float:left;width :60px ;text-align:right">用户名：</span>
+					<span><input type = "text" name = "username"></span> 
+				</p>
+				<p>
+					<span class = websitetext style = "display:block; float:left;width :60px ; text-align:right">密码：</span>
+					<span><input type = "password" name = "password"></span> 
+				</p>
+				<p>
+					<span style = "display:block; width:280px;float:left;text-align:middle"><input type = "button" class = "button orange" value = "登录"  onclick = "login()"> <input type = "button" class = "button orange" value = "注册" onclick = "registskip()"></span>
+				</p>
+			</div>
+		</form>
+	</div>
+	<input type = "text" value = "{{checkvalue}}" id = "check" style = "display:none">
+	<script>
+		var checkvalue = document.getElementById("check").value;
+		if(checkvalue == "yes")
+		{
+			window.location.href = "/workpage/";
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>projectVer1</title>
+<style type = "text/css">
+.websitetext{
+    font: 14px/100% Arial, Helvetica, sans-serif;
+}
+.button {
+	display: inline-block;
+	outline: none;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	font: 14px/100% Arial, Helvetica, sans-serif;
+	padding: .5em 2em .55em;
+	text-shadow: 0 1px 1px rgba(0,0,0,.3);
+	-webkit-border-radius: .5em; 
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+.button:hover {
+	text-decoration: none;
+}
+.button:active {
+	position: relative;
+	top: 1px;
+}
+.orange {
+	color: #fef4e9;
+	border: solid 1px #da7c0c;
+	background: #f78d1d;
+	background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20));
+	background: -moz-linear-gradient(top,  #faa51a,  #f47a20);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');
+}
+.orange:hover {
+	background: #f47c20;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f88e11), to(#f06015));
+	background: -moz-linear-gradient(top,  #f88e11,  #f06015);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f88e11', endColorstr='#f06015');
+}
+.orange:active {
+	color: #fcd3a5;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f47a20), to(#faa51a));
+	background: -moz-linear-gradient(top,  #f47a20,  #faa51a);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f47a20', endColorstr='#faa51a');
+}
+div
+{
+    display:block;
+	margin:10px 10px 10px 10px;
+}
+#loginpopup
+{
+	display:none;
+    position: fixed;
+    _position: absolute;
+    height: auto;
+    width: 280px;
+    background:#ffffff;
+	padding:0px 0px 10px 0px;
+	z-index:9999;
+}
+#configpopup
+{
+	display:none;
+    position: fixed;
+    _position: absolute;
+    height: auto;
+    width: 320px;
+    background:#ffffff;
+	padding:0px 0px 10px 0px;
+	z-index:9999;
+}
+</style>
+<script type="text/javascript">
+function showlogin()
+{ 
+	document.getElementById("loginpopup").style.display="block";
+	document.getElementById("loginpopup").style.left= "100px";
+	document.getElementById("loginpopup").style.top= "100px";
+}
+function showconfig()
+{
+	document.getElementById("configpopup").style.display="block";
+	document.getElementById("configpopup").style.left= "100px";
+	document.getElementById("configpopup").style.top= "100px";
+}
+function login()
+{
+	var userdata = document.loginform.username;
+	var passdata = document.loginform.password;
+    if(userdata.value == "")
+		alert('Pleasr input your username');
+	else if(passdata.value == "")
+		alert('Please input your password');
+}
+function config()
+{
+	var addressdata = document.configform.sqladderss;
+	var sqldata = document.configform.sqlsql;
+	var sqlnamedata = document.configform.sqlname;
+	var sqlpassdata = document.configform.sqlpassword;
+	return;
+}
+</script>
+</head>
+<body>
+	<div id = "loginpopup" style = "border:1px solid black;">
+		<form action = "" method = "get" name = "loginform">
+		<div>
+		<p>
+			<span class = websitetext style = "display:block; float:left;width :80px ;text-align:right">Username：</span>
+			<span><input type = "text" name = "username"></span> 
+		</p>
+		<p>
+			<span class = websitetext style = "display:block; float:left;width :80px ; text-align:right">Password：</span>
+			<span><input type = "password" name = "password"></span> 
+		</p>
+		<p>
+			<span style = "display:block; width:280px;float:left;text-align:middle"><input type = "submit" class = "button orange" value = "login" onclick = "login()"> <input type = "submit" class = "button orange" value = "regist"></span>
+		</p>
+		</div>
+		</form>
+	</div>
+	
+	<div id = "configpopup" style = "border:1px solid black;">
+		<form action = "" method = "get" name = "configform">
+		<div>
+		<p>
+			<span class = websitetext style = "display:block; float:left;width :100px ;text-align:right">Address：</span>
+			<span><input type = "text" name = "sqladdress"></span> 
+		</p>
+		<p>
+			<span class = websitetext style = "display:block; float:left;width :100px ; text-align:right">Mysql：</span>
+			<span><input type = "text" name = "sqlsql"></span> 
+		</p>
+		<p>
+			<span class = websitetext style = "display:block; float:left;width :100px ; text-align:right">Sqlname：</span>
+			<span><input type = "text" name = "sqlname"></span> 
+		</p>
+		<p>
+			<span class = websitetext style = "display:block; float:left;width :100px ; text-align:right">Sqlpassword：</span>
+			<span><input type = "password" name = "sqlpassword"></span> 
+		</p>
+		<p style = "display:block;text-align:center">
+			<span><input type = "submit" class = "button orange" value = "config"></span>
+		</p>
+		</div>
+		</form>
+	</div>
+	
+	
+	<div style = "border:1px solid black; width:644px;display:inline-block">
+		<div>
+			<p>
+				<span class = websitetext>Input your sql code here:</span>
+				</br>
+			</p>
+		</div>
+		<div>
+	    	<textarea rows = "36" cols = "85">
+			</textarea>
+		</div>
+		<div>
+			<p>
+				<span style = "display:block;;text-align:left"><input type = "submit" class = "button orange" value = "load"> <input type = "submit" class = "button orange" value = "execute"> <input type = "submit" class = "button orange" value = "store"> 
+				<input type = "submit" class = "button orange" value = "login" onclick = "showlogin()"> <input type = "submit" class = "button orange" value = "config" onclick = "showconfig()"> </span>
+			</p>
+		</div>
+	</div>
+	
+	<div style = "border:1px solid black; width:320px;height:658px;display:inline-block;float:left"> 
+		<div style = "border:1px solid black; width:298px;display:block;">
+			<div>
+				<p>
+					<span class = websitetext>SqlName: </span>
+					</br>
+				</p>
+			</div>
+			<div>
+				<p>
+					<span class = websitetext>TableName: </span>
+				</p>
+			</div>
+		</div>
+		<div style = "border:1px solid black; width:298px;height:548px;display:block;">
+			<div>
+				<p>
+					<span class = websitetext>TaskList: </span>
+					</br>
+				</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

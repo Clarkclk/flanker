@@ -1,0 +1,28 @@
+python scheduler.py www www.sqlexecute
+ python scheduler.py www www.sql
+execute
+ python scheduler.py www www.sql
+modify
+ python scheduler.py www www.sql
+
+ python scheduler.py  .sql
+
+ python scheduler.py  .sql
+
+ python scheduler.py  .sql
+
+ python scheduler.py  .sql
+
+ python scheduler.py  .sql
+
+ python scheduler.py  .sql
+terminate
+ python scheduler.py a a.sql
+execute
+ python scheduler.py b b.sql
+
+ python scheduler.py  .sql
+execute
+ python scheduler.py s s.sql
+
+ python scheduler.py  .sql
